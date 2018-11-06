@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-reserva-heading">Create or edit a Reserva</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!reserva.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="reserva.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_data_inicial">Data Inicial</label>
+                    <div class="input-group">
+                        <input id="field_data_inicial" type="text" class="form-control" name="data_inicial" ngbDatepicker  #data_inicialDp="ngbDatepicker" [(ngModel)]="reserva.data_inicial"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="data_inicialDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.data_inicial?.dirty && editForm.controls.data_inicial?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.data_inicial?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_data_final">Data Final</label>
+                    <div class="input-group">
+                        <input id="field_data_final" type="text" class="form-control" name="data_final" ngbDatepicker  #data_finalDp="ngbDatepicker" [(ngModel)]="reserva.data_final"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="data_finalDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_veiculo_id">Veiculo Id</label>
+                    <select class="form-control" id="field_veiculo_id" name="veiculo_id" [(ngModel)]="reserva.veiculo_idId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="veiculoOption.id" *ngFor="let veiculoOption of veiculo_ids; trackBy: trackVeiculoById">{{veiculoOption.veiculo}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

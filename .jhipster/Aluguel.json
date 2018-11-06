@@ -1,0 +1,63 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "cliente_id",
+            "otherEntityName": "cliente",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "cliente_id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "cliente"
+        },
+        {
+            "relationshipName": "veiculo_id",
+            "otherEntityName": "veiculo",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "veiculo_id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "veiculo"
+        },
+        {
+            "relationshipName": "reserva_id",
+            "otherEntityName": "reserva",
+            "relationshipType": "one-to-one",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "reserva_id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "data_retirada",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "data_prev_devolucao",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "data_real_devolucao",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "valor_locacao",
+            "fieldType": "BigDecimal"
+        }
+    ],
+    "changelogDate": "20181106021154",
+    "dto": "mapstruct",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "aluguel",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

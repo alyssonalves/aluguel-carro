@@ -1,0 +1,91 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-aluguel-heading">Create or edit a Aluguel</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!aluguel.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="aluguel.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_data_retirada">Data Retirada</label>
+                    <div class="input-group">
+                        <input id="field_data_retirada" type="text" class="form-control" name="data_retirada" ngbDatepicker  #data_retiradaDp="ngbDatepicker" [(ngModel)]="aluguel.data_retirada"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="data_retiradaDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.data_retirada?.dirty && editForm.controls.data_retirada?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.data_retirada?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_data_prev_devolucao">Data Prev Devolucao</label>
+                    <div class="input-group">
+                        <input id="field_data_prev_devolucao" type="text" class="form-control" name="data_prev_devolucao" ngbDatepicker  #data_prev_devolucaoDp="ngbDatepicker" [(ngModel)]="aluguel.data_prev_devolucao"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="data_prev_devolucaoDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.data_prev_devolucao?.dirty && editForm.controls.data_prev_devolucao?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.data_prev_devolucao?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_data_real_devolucao">Data Real Devolucao</label>
+                    <div class="input-group">
+                        <input id="field_data_real_devolucao" type="text" class="form-control" name="data_real_devolucao" ngbDatepicker  #data_real_devolucaoDp="ngbDatepicker" [(ngModel)]="aluguel.data_real_devolucao"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="data_real_devolucaoDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.data_real_devolucao?.dirty && editForm.controls.data_real_devolucao?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.data_real_devolucao?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_valor_locacao">Valor Locacao</label>
+                    <input type="number" class="form-control" name="valor_locacao" id="field_valor_locacao"
+                        [(ngModel)]="aluguel.valor_locacao" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_cliente_id">Cliente Id</label>
+                    <select class="form-control" id="field_cliente_id" name="cliente_id" [(ngModel)]="aluguel.cliente_idId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="clienteOption.id" *ngFor="let clienteOption of cliente_ids; trackBy: trackClienteById">{{clienteOption.cliente_id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_veiculo_id">Veiculo Id</label>
+                    <select class="form-control" id="field_veiculo_id" name="veiculo_id" [(ngModel)]="aluguel.veiculo_idId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="veiculoOption.id" *ngFor="let veiculoOption of veiculo_ids; trackBy: trackVeiculoById">{{veiculoOption.veiculo_id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

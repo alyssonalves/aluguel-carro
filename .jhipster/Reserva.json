@@ -1,0 +1,41 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "cliente_id",
+            "otherEntityName": "cliente",
+            "relationshipType": "one-to-one",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "cliente_id"
+        },
+        {
+            "relationshipName": "veiculo_id",
+            "otherEntityName": "veiculo",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "veiculo",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "veiculo_id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "data_inicial",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "data_final",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20181106020828",
+    "dto": "mapstruct",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "reserva",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}
